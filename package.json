@@ -3,8 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "bin/www.ts",
+  "engines": {
+    "npm" : ">=9.8.1",
+    "node" : ">=20.9.0"
+  },
   "scripts": {
-    "start:dev": "ts-node-dev ./bin/www",
+    "start:dev": "ts-node-dev --env-file=config/local/.env ./bin/www",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
     "format": "npx prettier --write .",
