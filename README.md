@@ -28,9 +28,22 @@ In the root of the project you will find the file __.eslinttrc__ where you can c
 
 ### 4.- Prettier options:
 
-En la raiz del proyecto encontrara el fichero __.prettierrc.json__ donde podra configurar las distintas opciones de prettier, esta configurado con algunas opciones basadas en las reglas del linter y algunas opciones a mi gusto, como siempre esto puede variar en el tiempo, sientete libre de configurarlas a tu gusto:
-
+In the root of the project you will find the file __.prettierrc.json__ where you can configure the different prettier options, it is configured with some options based on the linter rules and some options to my taste, as always this may vary over time, feel free to configure them to your liking:
 [https://prettier.io/docs/en/options](https://prettier.io/docs/en/options)
+
+### 5.- Install git hooks: 
+
+The following default git hooks have been configured:
+
+- On Commit:
+  - The commit will be verified (it needs to comply with the commitlint rules).
+- On Push:
+  - The code will be checked to make sure it complies with the expected format.
+  - Check that the tests pass.
+
+```bash
+  npm run prepare
+```
 
 
 
