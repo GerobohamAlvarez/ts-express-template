@@ -1,12 +1,42 @@
+import {
+  authMiddleware,
+  loginController,
+  registerController,
+} from "common/dependency/infrastructure/dependency.container";
+
 import express, { Express } from "express";
 
-import { UserRouter } from "./infrastructure/dependency/dependency.container";
+export class ApplicationName {
 
-const app: Express = express();
+  private app: Express = express();
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+  constructor() {
+    this.config();
+    this.setUpMiddlewares();
+    this.setUpRoutes();
+  }
+  private config(){
+  }
 
-app.use("/users", UserRouter.loadRoutes());
+  private setUpMiddlewares(){
 
-export default app;
+    this.app.use(express.json());
+    this.app.use(express.urlencoded({ extended: false }));
+
+  }
+
+  private setUpRoutes(){
+    // Public routes
+    this.app.use("/v1/auth/register" , registerController.handle.bind(registerController));
+    this.app.use("/v1/auth/login" , loginController.handle.bind(loginController));
+    // Private routes
+    this.app.use(authMiddleware.handle.bind(authMiddleware));
+  }
+
+  public getInstance(){
+    return this.app;
+  }
+
+}
+
+export default ApplicationName;

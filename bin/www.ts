@@ -2,14 +2,20 @@
  * Module dependencies.
  */
 
-import app from "../src/app";
+import ApplicationName from "../src/app";
 import http from "http";
+
+/**
+ * Create Application Instance
+ */
+
+const app = new ApplicationName().getInstance();
 
 /**
  * Get port from environment and store in Express.
  */
 
-const port = normalizePort(process.env.PORT || "3000");
+const port = normalizePort(process.env["PORT"] || "3000");
 app.set("port", port);
 
 /**
@@ -81,8 +87,9 @@ function onError(error: ExpressError) {
  */
 
 function onListening() {
+
   const addr = server.address();
-  const bind = typeof addr === "string" ? "pipe " + addr : "port " + addr?.port;
+  const bind = typeof addr === "string" ? `${addr}`  : `${addr?.address}:${addr?.port} `;
   // eslint-disable-next-line no-console
-  console.debug("Listening on " + bind);
+  console.debug("Listening on: " + bind);
 }
