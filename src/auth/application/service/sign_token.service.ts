@@ -1,8 +1,6 @@
 import * as jwt from "jsonwebtoken";
-import { AuthUser } from "auth/domain/model/auth-user.auth";
+import { AuthUser } from "auth/domain/model/auth-user.model";
 import { ISignTokenAuth } from "auth/domain/use_cases/sign_token.auth";
-
-
 
 export class SignTokenService implements ISignTokenAuth {
 

@@ -11,9 +11,9 @@ export class RegisterController {
 
   async handle(req:Request , res: Response):Promise<void> {
 
-    const { username , password } = req.body;
+    const { login , password } = req.body;
 
-    const user = await this.createUserService.execute( username , password , []);
+    const user = await this.createUserService.execute( login , password);
 
     res.status(200).json(user);
 

@@ -1,4 +1,4 @@
-import { AuthUser } from "auth/domain/model/auth-user.auth";
+import { AuthUser } from "auth/domain/model/auth-user.model";
 import { ILogger } from "common/logger/domain/ILogger";
 import { ILogoutAuth } from "auth/domain/use_cases/logout.auth";
 

@@ -1,5 +1,5 @@
 import * as jwt from "jsonwebtoken";
-import { AuthUser } from "auth/domain/model/auth-user.auth";
+import { AuthUser } from "auth/domain/model/auth-user.model";
 import { IAuthRepository } from "auth/domain/repository/auth.repository";
 import { IValidateTokenAuth } from "auth/domain/use_cases/validate_token.auth";
 import { UnauthorizedException } from "../../domain/exceptions/unauthorized.exception";

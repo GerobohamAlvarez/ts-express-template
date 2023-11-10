@@ -11,9 +11,9 @@ export class LoginController {
   }
 
   async handle(req:Request , res: Response):Promise<void> {
-      const { username , password } = req.body;
+      const { login , password } = req.body;
 
-      const authUser = await this.loginService.execute(username , password);
+      const authUser = await this.loginService.execute(login , password);
 
       const token = await this.signTokenService.execute(authUser);
 

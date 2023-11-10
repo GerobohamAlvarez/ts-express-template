@@ -1,4 +1,4 @@
-import { AuthUser } from "auth/domain/model/auth-user.auth";
+import { AuthUser } from "auth/domain/model/auth-user.model";
 
 export interface ILogoutAuth {
 

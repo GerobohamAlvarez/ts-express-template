@@ -1,8 +1,7 @@
-import { AuthUser } from "auth/domain/model/auth-user.auth";
-import { Roles } from "auth/domain/model/roles.auth";
+import { AuthUser } from "auth/domain/model/auth-user.model";
 
 export interface IRegisterAuth {
 
-  execute( username: string , password: string , roles: Roles[]): Promise<AuthUser>;
+  execute( login: string , password: string ): Promise<AuthUser>;
 
 }

@@ -1,7 +1,7 @@
-import { AuthUser } from "auth/domain/model/auth-user.auth";
+import { AuthUser } from "auth/domain/model/auth-user.model";
 
 export interface ILoginAuth {
 
-  execute( username: string , password: string): Promise<AuthUser>;
+  execute( login: string , password: string): Promise<AuthUser>;
 
 }

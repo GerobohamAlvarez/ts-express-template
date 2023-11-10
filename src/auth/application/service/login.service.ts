@@ -1,31 +1,27 @@
-import { AuthUser } from "auth/domain/model/auth-user.auth";
+import { AuthUser } from "auth/domain/model/auth-user.model";
 import { IAuthRepository } from "auth/domain/repository/auth.repository";
-import { IHashtable } from "common/security/domain/hash.interface";
 import { ILogger } from "common/logger/domain/ILogger";
 import { ILoginAuth } from "auth/domain/use_cases/login.auth";
 import { UnauthorizedException } from "auth/domain/exceptions/unauthorized.exception";
 
-
-
 export class LoginService implements ILoginAuth {
   constructor(
-    private encryptService:IHashtable,
     private authRepository: IAuthRepository,
     private logger:ILogger
   ) {}
-  async execute(username: string, password: string): Promise<AuthUser> {
+  async execute(login: string, password: string): Promise<AuthUser> {
 
-    this.logger.debug(`Login user : '${username}' with password: '${password.replace(".", "*")}' `);
+    const user = AuthUser.build(login , password);
 
-    const securePass:string = await this.encryptService.encode(password);
+    this.logger.debug(`Login user : '${user.login}'.`);
 
-    const user:AuthUser|null = await this.authRepository.findUserByUsernameAndPassword(username , securePass);
+    const authUser:AuthUser|null = await this.authRepository.findUserByUsernameAndPassword(user.login , user.password);
 
-    if(!user) {
-      throw new UnauthorizedException(`Unable to login with user: '${username}' `);
+    if(!authUser) {
+      throw new UnauthorizedException(`Unable to login with user: '${login}' `);
     }
 
-    return user;
+    return authUser;
   }
 
 

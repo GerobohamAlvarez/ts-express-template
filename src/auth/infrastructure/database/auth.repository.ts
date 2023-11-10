@@ -1,6 +1,5 @@
-import { AuthUser } from "auth/domain/model/auth-user.auth";
+import { AuthUser } from "auth/domain/model/auth-user.model";
 import { IAuthRepository } from "auth/domain/repository/auth.repository";
-import { Roles } from "../../domain/model/roles.auth";
 
 export class AuthRepository implements IAuthRepository {
 
@@ -15,16 +14,7 @@ export class AuthRepository implements IAuthRepository {
     return user.pop() || null;
   }
 
-  async createUser(username: string, password: string, roles: Roles[]): Promise<AuthUser> {
-
-    const _id = (this.users.length + 1).toString();
-
-    const user:AuthUser = {
-      _id: _id,
-      login: username,
-      password,
-      roles: roles,
-    };
+  async createUser( user: AuthUser ): Promise<AuthUser> {
 
     this.users.push(user);
 
